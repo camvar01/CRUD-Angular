@@ -21,4 +21,11 @@ API: string = 'http://localhost/empleados/index.php'; // API LOCAL PHP CRUDO
     return this.ClienteHttp.get(this.API + "?borrar=" + id);
   }
 
+  ObtenerEmpleado(id:any):Observable<any>{
+    return this.ClienteHttp.get(this.API + "?consultar=" + id);
+  }
+
+  EditarEmpleado(id: any, datosEmpleado: any): Observable<any> {
+  return this.ClienteHttp.post(this.API+"?actualizar="+id, datosEmpleado);
+}
 }
