@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Crud } from '../../servicio/crud';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-empleado',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,RouterLink],
   templateUrl: './editar-empleado.html',
   styleUrl: './editar-empleado.css',
 })
