@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Crud } from '../../servicio/crud';
+import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-agregar-empleado',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './agregar-empleado.html',
   styleUrl: './agregar-empleado.css',
 })
@@ -12,7 +14,11 @@ export class AgregarEmpleado implements OnInit {
 
   formularioDeEmpleado: FormGroup; 
 
-  constructor(public formulario: FormBuilder) {
+  constructor(
+    public formulario: FormBuilder,
+    private crudServicio: Crud,
+    private Routeador: Router  
+  ) {
 
     this.formularioDeEmpleado = this.formulario.group({
       nombre: [''],
@@ -26,5 +32,7 @@ export class AgregarEmpleado implements OnInit {
   enviarDatos(): any{
     console.log("Datos enviados");
     console.log(this.formularioDeEmpleado.value);
-  }
+    this.crudServicio.AgregarEmpleado(this.formularioDeEmpleado.value).subscribe();
+    this.Routeador.navigateByUrl('/listar-empleado');
+}
 }
