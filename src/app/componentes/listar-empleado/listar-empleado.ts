@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Crud } from '../../servicio/crud';
+import { FormsModule } from "@angular/forms";
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-listar-empleado',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule, NgFor],
   templateUrl: './listar-empleado.html',
   styleUrl: './listar-empleado.css',
 })
-export class ListarEmpleado {
+export class ListarEmpleado implements OnInit {
+  empleados: any;
 
+  constructor(private crudServicio: Crud) {
+
+  }
+  ngOnInit(): void {
+    this.crudServicio.ObtenerEmpleados().subscribe(respuesta =>{
+      console.log(respuesta);
+      this.empleados=respuesta;
+    });
+  }
 }

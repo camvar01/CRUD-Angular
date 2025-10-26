@@ -16,12 +16,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="">
-                        <td>9</td>
-                        <td>Camilo</td>
-                        <td>milo.avc@gmail.com</td>
+                    <tr *ngFor="let empleado of empleados; let iControl= index">
+                        <td>{{ empleado.id}}</td>
+                        <td>{{ empleado.nombre}}</td>
+                        <td>{{ empleado.correo}}</td>
                         <td>
-                            <a routerLink="/editar-empleado/1">Editar</a> | Borrar
+                            <a [routerLink]="['/editar-empleado', empleado.id]">Editar</a> | Borrar
                         </td>
                     </tr>
                 </tbody>

@@ -7,9 +7,13 @@ import { Empleado } from './Empleado';
   providedIn: 'root'
 })
 export class Crud {
-API: string = 'http://localhost/empleados/index.php';
+API: string = 'http://localhost/empleados/index.php'; // API LOCAL PHP CRUDO
   constructor(private ClienteHttp: HttpClient) {}
   AgregarEmpleado(datosEmpleado:Empleado):Observable<any>{
     return this.ClienteHttp.post(this.API+"?insertar=1", datosEmpleado);
+  }
+
+  ObtenerEmpleados():Observable<any>{
+    return this.ClienteHttp.get(this.API);
   }
 }
